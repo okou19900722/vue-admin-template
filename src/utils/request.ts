@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
-import store from '../store'
-import { getToken } from '@/utils/auth'
+import store from '@/store/index.ts'
+import { getToken } from '@/utils/auth.ts'
 
 // 创建axios实例
 const service = axios.create({
+  // @ts-ignore
   baseURL: process.env.BASE_API, // api 的 base_url
   timeout: 5000 // 请求超时时间
 })
@@ -19,7 +20,7 @@ service.interceptors.request.use(
   },
   error => {
     // Do something with request error
-    console.log(error) // for debug
+    console.log(error); // for debug
     Promise.reject(error)
   }
 )

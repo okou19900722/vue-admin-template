@@ -20,14 +20,12 @@
   </div>
 </template>
 
-<script>
-
-export default {
-  name: 'Page404',
-  computed: {
-    message() {
-      return '网管说这个页面你不能进......'
-    }
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+@Component({})
+export default class Page404 extends Vue {
+  get message() {
+    return '网管说这个页面你不能进......'
   }
 }
 </script>

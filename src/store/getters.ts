@@ -1,4 +1,7 @@
-const getters = {
+import {GetterTree} from "vuex";
+import {StateInfo} from "@/store/types";
+
+const getters : GetterTree<StateInfo, StateInfo> = {
   sidebar: state => state.app.sidebar,
   device: state => state.app.device,
   token: state => state.user.token,

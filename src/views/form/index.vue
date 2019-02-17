@@ -47,32 +47,43 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      }
-    }
-  },
-  methods: {
-    onSubmit() {
-      this.$message('submit!')
-    },
-    onCancel() {
-      this.$message({
-        message: 'cancel!',
-        type: 'warning'
-      })
-    }
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+
+interface FormInfo {
+  name : string;
+  region: string;
+  date1: string;
+  date2: string;
+  delivery: boolean;
+  type: string[];
+  resource: string;
+  desc: string;
+}
+
+@Component({})
+export default class Form extends Vue {
+  form : FormInfo = {
+    name: '',
+    region: '',
+    date1: '',
+    date2: '',
+    delivery: false,
+    type: [],
+    resource: '',
+    desc: ''
+  };
+
+  onSubmit() {
+    this.$message('submit!')
+    console.log(this.form.type)
+  }
+
+  onCancel() {
+    this.$message({
+      message: 'cancel!',
+      type: 'warning'
+    })
   }
 }
 </script>

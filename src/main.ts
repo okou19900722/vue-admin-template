@@ -9,19 +9,19 @@ import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 import '@/styles/index.scss' // global css
 
 import App from './App.vue'
-import store from './store'
-import router from './router'
+import store from '@/store/index.ts'
+import router from '@/router/index.ts'
 
-import '@/icons' // icon
-import '@/permission' // permission control
+import '@/icons/index.ts' // icon
+import '@/permission.ts' // permission control
 
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI, { locale });
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   el: '#app',
   router,
   store,
   render: h => h(App)
-})
+});

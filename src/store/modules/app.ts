@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie'
+import {Module} from "vuex";
+import {AppInfo, StateInfo} from "@/store/types";
 
-const app = {
+const app : Module<AppInfo, StateInfo> = {
   state: {
     sidebar: {
       opened: !+Cookies.get('sidebarStatus'),

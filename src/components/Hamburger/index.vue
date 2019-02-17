@@ -13,19 +13,21 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Hamburger',
-  props: {
-    isActive: {
-      type: Boolean,
-      default: false
-    },
-    toggleClick: {
-      type: Function,
-      default: null
-    }
-  }
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+
+@Component({})
+export default class Hamburger extends Vue {
+  @Prop({
+    default: false,
+    type: Boolean
+  })
+  isActive : Boolean;
+  @Prop({
+    default: null,
+    type: Function
+  })
+  toggleClick : any
 }
 </script>
 

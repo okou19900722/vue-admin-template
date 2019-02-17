@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import request from '@/utils/request.ts'
 
 export function login(username, password) {
   return request({
@@ -19,7 +19,7 @@ export function getInfo(token) {
   })
 }
 
-export function logout() {
+export function logout(...args) {
   return request({
     url: '/user/logout',
     method: 'post'

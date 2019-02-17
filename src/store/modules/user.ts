@@ -1,7 +1,9 @@
-import { login, logout, getInfo } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { login, logout, getInfo } from '@/api/login.ts'
+import { getToken, setToken, removeToken } from '@/utils/auth.ts'
+import {Module} from "vuex";
+import {StateInfo, UserInfo} from "@/store/types";
 
-const user = {
+const user : Module<UserInfo, StateInfo>= {
   state: {
     token: getToken(),
     name: '',
