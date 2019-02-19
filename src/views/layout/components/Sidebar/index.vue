@@ -14,26 +14,33 @@
   </el-scrollbar>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
+<script lang="ts">
 import variables from '@/styles/variables.scss'
 import SidebarItem from './SidebarItem'
 
-export default {
-  components: { SidebarItem },
-  computed: {
-    ...mapGetters([
-      'sidebar'
-    ]),
-    routes() {
-      return this.$router.options.routes
-    },
-    variables() {
-      return variables
-    },
-    isCollapse() {
-      return !this.sidebar.opened
-    }
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component({
+  components: {
+    SidebarItem
+  }
+})
+export default class Sidebar extends Vue {
+  get sidebar() {
+    return this.$store.getters.sidebar
+  }
+
+  get routes() {
+    const router : any = this.$router
+    return router.options.routes
+  }
+
+  get variables() {
+    return variables
+  }
+
+  get isCollapse() {
+    return !this.sidebar.opened
   }
 }
 </script>

@@ -14,6 +14,7 @@ import router from '@/router/index.ts'
 
 import '@/icons/index.ts' // icon
 import '@/permission.ts' // permission control
+import './mock/index.ts'
 
 Vue.use(ElementUI, { locale });
 

@@ -6,30 +6,28 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
 import { isExternal } from '@/utils/validate.ts'
-
-export default {
-  props: {
-    to: {
-      type: String,
-      required: true
-    }
-  },
-  methods: {
-    linkProps(url) {
-      if (isExternal(url)) {
-        return {
-          is: 'a',
-          href: url,
-          target: '_blank',
-          rel: 'noopener'
-        }
-      }
+import { Component, Vue, Prop } from 'vue-property-decorator'
+@Component({})
+export default class Link extends Vue {
+  @Prop({
+    type: String,
+    required: true
+  })
+  to: string;
+  linkProps(url) {
+    if (isExternal(url)) {
       return {
-        is: 'router-link',
-        to: url
+        is: 'a',
+        href: url,
+        target: '_blank',
+        rel: 'noopener'
       }
+    }
+    return {
+      is: 'router-link',
+      to: url
     }
   }
 }

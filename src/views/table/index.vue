@@ -42,10 +42,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { getList } from '@/api/table.ts'
+import { Vue, Component } from 'vue-property-decorator'
 
-export default {
+@Component({
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -55,24 +56,23 @@ export default {
       }
       return statusMap[status]
     }
-  },
-  data() {
-    return {
-      list: null,
-      listLoading: true
-    }
-  },
+  }
+})
+export default class Table extends Vue {
+  list = null;
+  listLoading = true;
   created() {
     this.fetchData()
-  },
-  methods: {
-    fetchData() {
-      this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
-    }
+  }
+  fetchData() {
+    this.listLoading = true
+    // xxx 原版js这里的参数是 this.listQuery，但没有定义此变量，所以这里先用空字符代替
+    getList('').then(response => {
+      this.list = response.data.items
+      this.listLoading = false
+    }).catch(err => {
+      console.error(err)
+    })
   }
 }
 </script>

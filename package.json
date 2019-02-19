@@ -16,16 +16,21 @@
   "dependencies": {
     "axios": "0.18.0",
     "element-ui": "2.4.6",
+    "install": "^0.12.2",
     "js-cookie": "2.2.0",
+    "mockjs": "^1.0.1-beta3",
     "normalize.css": "7.0.0",
+    "npm": "^6.8.0",
     "nprogress": "0.2.0",
     "vue": "2.5.17",
     "vue-class-component": "^6.3.2",
     "vue-property-decorator": "^7.3.0",
     "vue-router": "3.0.1",
-    "vuex": "3.0.1"
+    "vuex": "3.0.1",
+    "vuex-class": "^0.3.1"
   },
   "devDependencies": {
+    "@types/node": "^11.9.4",
     "autoprefixer": "8.5.0",
     "babel-core": "6.26.0",
     "babel-eslint": "8.2.6",

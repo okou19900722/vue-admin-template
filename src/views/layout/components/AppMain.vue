@@ -8,14 +8,11 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'AppMain',
-  computed: {
-    // key() {
-    //   return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
-    // }
-  }
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component
+export default class AppMain extends Vue {
 }
 </script>
 

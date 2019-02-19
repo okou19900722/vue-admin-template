@@ -33,69 +33,71 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import path from 'path'
 import { isExternal } from '@/utils/validate.ts'
 import Item from './Item'
 import AppLink from './Link'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 
-export default {
-  name: 'SidebarItem',
-  components: { Item, AppLink },
-  props: {
-    // route object
-    item: {
-      type: Object,
-      required: true
-    },
-    isNest: {
-      type: Boolean,
-      default: false
-    },
-    basePath: {
-      type: String,
-      default: ''
-    }
-  },
-  data() {
-    return {
-      onlyOneChild: null
-    }
-  },
-  methods: {
-    hasOneShowingChild(children, parent) {
-      const showingChildren = children.filter(item => {
-        if (item.hidden) {
-          return false
-        } else {
-          // Temp set(will be used if only has one showing child)
-          this.onlyOneChild = item
-          return true
-        }
-      })
+@Component({
+  components: {
+    Item,
+    AppLink
+  }
+})
+export default class SidebarItem extends Vue {
+  @Prop({
+    type: Object,
+    required: true
+  })
+  item : any;
+  @Prop({
+    type: Boolean,
+    default: false
+  })
+  isNest: boolean;
+  @Prop({
+    type: String,
+    default: ''
+  })
+  basePath: string;
+  onlyOneChild = null;
 
-      // When there is only one child router, the child router is displayed by default
-      if (showingChildren.length === 1) {
+  hasOneShowingChild(children, parent) {
+    const showingChildren = children.filter(item => {
+      if (item.hidden) {
+        return false
+      } else {
+        // Temp set(will be used if only has one showing child)
+        this.onlyOneChild = item
         return true
       }
+    })
 
-      // Show parent if there are no child router to display
-      if (showingChildren.length === 0) {
-        this.onlyOneChild = { ... parent, path: '', noShowingChildren: true }
-        return true
-      }
-
-      return false
-    },
-    resolvePath(routePath) {
-      if (this.isExternalLink(routePath)) {
-        return routePath
-      }
-      return path.resolve(this.basePath, routePath)
-    },
-    isExternalLink(routePath) {
-      return isExternal(routePath)
+    // When there is only one child router, the child router is displayed by default
+    if (showingChildren.length === 1) {
+      return true
     }
+
+    // Show parent if there are no child router to display
+    if (showingChildren.length === 0) {
+      this.onlyOneChild = {
+        ...parent, path: '', noShowingChildren: true
+      }
+      return true
+    }
+
+    return false
+  }
+  resolvePath(routePath) {
+    if (this.isExternalLink(routePath)) {
+      return routePath
+    }
+    return path.resolve(this.basePath, routePath)
+  }
+  isExternalLink(routePath) {
+    return isExternal(routePath)
   }
 }
 </script>

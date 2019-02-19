@@ -7,15 +7,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
 
 @Component({})
 export default class Dashboard extends Vue {
-  get name() {
-    return this.$store.getters.name
-  }
-  get roles() {
-    return this.$store.getters.roles
-  }
+  @Getter('name')
+  name: string;
+  @Getter('roles')
+  roles: string[];
 }
 </script>
 
